@@ -1,0 +1,55 @@
+.toolbar {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  font-size: xx-large;
+}
+
+.tankdiv {
+    
+}
+
+.editprops{
+
+}
+
+.changelevels {
+  display: flex;
+  justify-content: center;
+}
+
+.float-container {
+  border: 3px solid #fff;
+}
+
+.float-child {
+  width: 30%;
+  min-width: 300px;
+  float: left;
+  padding: 20px;
+  align-content: center;
+}
+
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.drain{
+    display: flex;
+    justify-content:flex-end;
+    margin-top: 10px;
+}
+
+.single-button .mat-button-base{
+    width: 100%;
+}
+
+.edit-content{
+
+}
