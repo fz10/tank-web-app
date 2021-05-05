@@ -53,3 +53,15 @@
 .edit-content{
 
 }
+
+.tank-blue {
+  --smart-primary: #008ec2;
+}
+
+.tank-yellow {
+  --smart-primary: #f5f516;
+}
+
+.tank-red {
+  --smart-primary: #f20707;
+}

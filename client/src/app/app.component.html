@@ -10,34 +10,40 @@
       <mat-card [class.mat-elevation-z3]="true">
         <mat-card-title style="text-align: center">Water Tank</mat-card-title>
         <mat-card-content style="justify-content:center; display:flex">
-            <smart-tank #tank id="tank" [max]="100" [value]="22" [interval]="10"></smart-tank>
+          <smart-tank [class]="classColor"
+                      scale-position="near"
+                      [value]="level"
+                      [max]="maximum"
+                      [min]="minimum"
+                      scale-type="integer"
+                      [readonly]="true"></smart-tank>
         </mat-card-content>
       </mat-card>
       <mat-card-actions class="drain">
-        <button mat-raised-button color="primary">Drain</button>
+        <button mat-raised-button color="primary" [disabled]="editing" (click)="onDrain()">Drain</button>
       </mat-card-actions>
     </div>
   </div>
 
   <div class="float-child">
     <div class="changelevels">
-      <form class="changelevels-form">
+      <div class="changelevels-form">
         <mat-form-field appearance="outline" style="text-align: center">
           <mat-label>Tank level (Lts)</mat-label>
-          <input matInput readonly value="20">
+          <input matInput readonly [value]="level">
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary">+</button>
-          <button mat-raised-button color="primary">-</button>
+          <button mat-raised-button color="primary" [disabled]="editing" (click)="onIncrement()">+</button>
+          <button mat-raised-button color="primary" [disabled]="editing" (click)="onDecrement()">-</button>
         </div>
         <mat-form-field appearance="outline" style="text-align: center; margin-top:10px">
           <mat-label>Set Point (Lts)</mat-label>
-          <input matInput type="number" value="20">
+          <input matInput type="number" [(ngModel)]="setValue">
         </mat-form-field>
         <div class="single-button">
-          <button mat-raised-button color="primary">Set</button>
+          <button mat-raised-button color="primary" [disabled]="editing" (click)="onSetValue()">Set</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -46,7 +52,6 @@
       <mat-card [class.mat-elevation-z3]="true">
         <mat-card-title style="text-align: center">Tank Setup</mat-card-title>
         <mat-card-content>
-          <form>
             Capacity
             <mat-divider [inset]="true"></mat-divider>
             <div class="edit-content">
@@ -54,14 +59,14 @@
                 Maximum
                 <mat-form-field appearance="outline" style="text-align: center; margin-top:10px">
                   <mat-label>(Lts)</mat-label>
-                  <input matInput type="number" value="20">
+                  <input matInput type="number" [disabled]="!editing" [(ngModel)]="max">
                 </mat-form-field>
               </div>
               <div>
                 Minimum
                 <mat-form-field appearance="outline" style="text-align: center; margin-top:10px">
                   <mat-label>(Lts)</mat-label>
-                  <input matInput type="number" value="20">
+                  <input matInput type="number" [disabled]="!editing" [(ngModel)]="min">
                 </mat-form-field>
               </div>
             </div>
@@ -72,24 +77,23 @@
                 High Level
                 <mat-form-field appearance="outline" style="text-align: center; margin-top:10px">
                   <mat-label>(Lts)</mat-label>
-                  <input matInput type="number" value="20">
+                  <input matInput type="number" [disabled]="!editing" [(ngModel)]="high">
                 </mat-form-field>
               </div>
               <div>
                 Low Level
                 <mat-form-field appearance="outline" style="text-align: center; margin-top:10px">
                   <mat-label>(Lts)</mat-label>
-                  <input matInput type="number" value="20">
+                  <input matInput type="number" [disabled]="!editing" [(ngModel)]="low">
                 </mat-form-field>
               </div>
             </div>
-          </form>
         </mat-card-content>
         <mat-card-actions>
           <div style="display: flex; justify-content: center">
-            <button mat-raised-button color="basic">Edit</button>
-            <button mat-raised-button color="warn">Cancel</button>
-            <button mat-raised-button color="primary">Confirm</button>
+            <button mat-raised-button color="basic" (click)="onEdit()">Edit</button>
+            <button mat-raised-button color="warn" [disabled]="!editing" (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" [disabled]="!editing" (click)="onConfirm()">Confirm</button>
           </div>
         </mat-card-actions>
       </mat-card>
